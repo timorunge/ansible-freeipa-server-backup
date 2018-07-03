@@ -1,0 +1,7 @@
+---
+
+- name: Install FreeIPA server backup packages
+  package:
+    name: "{{ freeipa_server_backup_pkgs }}"
+    state: present
+    update_cache: "{{ omit if ansible_pkg_mgr == 'dnf' else 'yes' }}"

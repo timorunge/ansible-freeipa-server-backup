@@ -1,0 +1,5 @@
+---
+
+freeipa_server_backup_pkgs:
+  - cron
+  - rsync

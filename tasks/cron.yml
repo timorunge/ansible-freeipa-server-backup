@@ -1,0 +1,34 @@
+---
+
+- name: Create cronjob for full backup of FreeIPA server
+  cron:
+    day: "{{ freeipa_server_backup_cron_full.day | default('*') }}"
+    hour: "{{ freeipa_server_backup_cron_full.hour | default(3) }}"
+    job: ipa-backup -q > /dev/null 2>&1
+    minute: "{{ freeipa_server_backup_cron_full.minute | default(59 | random(seed=inventory_hostname)) }}"
+    month: "{{ freeipa_server_backup_cron_full.month | default('*') }}"
+    name: FreeIPA online backup (data only)
+    state: "{{ freeipa_server_backup_cron_full.state | default(present) }}"
+    weekday: "{{ freeipa_server_backup_cron_full.weekday | default('*') }}"
+
+- name: Create cronjob for online backup of FreeIPA server
+  cron:
+    day: "{{ freeipa_server_backup_cron_online.day | default('*') }}"
+    hour: "{{ freeipa_server_backup_cron_online.hour | default(3) }}"
+    job: ipa-backup --online --data -q > /dev/null 2>&1
+    minute: "{{ freeipa_server_backup_cron_online.minute | default(59 | random(seed=inventory_hostname)) }}"
+    month: "{{ freeipa_server_backup_cron_online.month | default('*') }}"
+    name: "FreeIPA full backup"
+    state: "{{ freeipa_server_backup_cron_online.state | default(present) }}"
+    weekday: "{{ freeipa_server_backup_cron_online.weekday | default('*') }}"
+
+- name: Create cronjob for deleting old backups
+  cron:
+    day: "{{ freeipa_server_backup_cron_delete.day | default('*') }}"
+    hour: "{{ freeipa_server_backup_cron_delete.hour | default(3) }}"
+    job: /usr/local/bin/ipa-backup-delete > /dev/null 2>&1
+    minute: "{{ freeipa_server_backup_cron_delete.minute | default(59 | random(seed=inventory_hostname)) }}"
+    month: "{{ freeipa_server_backup_cron_delete.month | default('*') }}"
+    name: FreeIPA remove old backups
+    state: "{{ freeipa_server_backup_cron_delete.state | default(present) }}"
+    weekday: "{{ freeipa_server_backup_cron_delete.weekday | default('*') }}"

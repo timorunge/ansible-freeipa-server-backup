@@ -1,0 +1,13 @@
+---
+
+- name: Create required backup directory
+  file:
+    mode: 0755
+    path: /var/lib/ipa/backup
+    state: directory
+
+- name: Copy FreeIPA backup delete script
+  template:
+    dest: /usr/local/bin/ipa-backup-delete
+    mode: 0755
+    src: ipa-backup-delete.sh.j2

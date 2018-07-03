@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  remote_user: root
+  gather_facts: true
+
+  vars:
+    freeipa_server_backup_max_age: 7
+    freeipa_server_backup_cron_full:
+      day: "*"
+      hour: 3
+      minute: "11"
+      month: "*"
+      state: present
+      weekday: "*"
+    freeipa_server_backup_cron_online:
+      day: "*"
+      hour: "*"
+      minute: 33
+      month: "*"
+      state: present
+      weekday: "*"
+    freeipa_server_backup_cron_delete:
+      day: "*"
+      hour: 3
+      minute: 55
+      month: "*"
+      state: present
+      weekday: "*"
+
+  roles:
+    - timorunge.freeipa_server_backup
