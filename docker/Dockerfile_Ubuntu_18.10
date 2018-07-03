@@ -19,9 +19,15 @@ RUN DEBIAN_FRONTEND=noninteractive \
     systemd
 RUN apt-get clean
 
-RUN pip install --upgrade pip setuptools
-RUN pip install ansible==${ANSIBLE_VERSION}
-RUN pip install ansible-lint coverage junit-xml splitter
+RUN pip install --upgrade \
+    pip \
+    setuptools
+RUN pip install --upgrade \
+    ansible-lint \
+    ansible==${ANSIBLE_VERSION} \
+    coverage \
+    junit-xml \
+    splitter
 RUN ansible --version
 
 COPY ./ /etc/ansible/roles/${ROLE_NAME}

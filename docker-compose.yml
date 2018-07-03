@@ -7,54 +7,54 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile_CentOS_7
       args:
-        ANSIBLE_VERSION: 2.5.5
+        ANSIBLE_VERSION: 2.6.0
         ROLE_NAME: timorunge.freeipa_server_backup
         WORKDIR: /ansible
-  debian_8.10:
+  debian_8_10:
     build:
       context: .
       dockerfile: ./docker/Dockerfile_Debian_8.10
       args:
-        ANSIBLE_VERSION: 2.5.5
+        ANSIBLE_VERSION: 2.6.0
         ROLE_NAME: timorunge.freeipa_server_backup
         WORKDIR: /ansible
-  debian_9.4:
+  debian_9_4:
     build:
       context: .
       dockerfile: ./docker/Dockerfile_Debian_9.4
       args:
-        ANSIBLE_VERSION: 2.5.5
+        ANSIBLE_VERSION: 2.6.0
         ROLE_NAME: timorunge.freeipa_server_backup
         WORKDIR: /ansible
-  ubuntu_16.04:
+  ubuntu_16_04:
     build:
       context: .
       dockerfile: ./docker/Dockerfile_Ubuntu_16.04
       args:
-        ANSIBLE_VERSION: 2.5.5
+        ANSIBLE_VERSION: 2.6.0
         ROLE_NAME: timorunge.freeipa_server_backup
         WORKDIR: /ansible
-  ubuntu_17.10:
+  ubuntu_17_10:
     build:
       context: .
       dockerfile: ./docker/Dockerfile_Ubuntu_17.10
       args:
-        ANSIBLE_VERSION: 2.5.5
+        ANSIBLE_VERSION: 2.6.0
         ROLE_NAME: timorunge.freeipa_server_backup
         WORKDIR: /ansible
-  ubuntu_18.04:
+  ubuntu_18_04:
     build:
       context: .
       dockerfile: ./docker/Dockerfile_Ubuntu_18.04
       args:
-        ANSIBLE_VERSION: 2.5.5
+        ANSIBLE_VERSION: 2.6.0
         ROLE_NAME: timorunge.freeipa_server_backup
         WORKDIR: /ansible
-  ubuntu_18.10:
+  ubuntu_18_10:
     build:
       context: .
       dockerfile: ./docker/Dockerfile_Ubuntu_18.10
       args:
-        ANSIBLE_VERSION: 2.5.5
+        ANSIBLE_VERSION: 2.6.0
         ROLE_NAME: timorunge.freeipa_server_backup
         WORKDIR: /ansible

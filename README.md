@@ -7,12 +7,12 @@ Requirements
 ------------
 
 This role requires Ansible 2.4.0 or higher. It's fully tested with the latest
-stable release (2.5.5).
+stable release (2.6.0).
 
 You can simply use pip to install (and define) the latest stable version:
 
 ```sh
-pip install ansible==2.5.5
+pip install ansible==2.6.0
 ```
 
 All platform requirements are listed in the metadata file.
@@ -121,7 +121,7 @@ bringing up the following containers:
 * Ubuntu 18.04
 * Ubuntu 18.10
 
-Ansible 2.5.5 is installed on all containers and is applying a
+Ansible 2.6.0 is installed on all containers and is applying a
 [test playbook](tests/test.yml) locally.
 
 For further details and additional checks take a look at the
