@@ -11,3 +11,10 @@
     dest: /usr/local/bin/ipa-backup-delete
     mode: 0755
     src: ipa-backup-delete.sh.j2
+
+- name: Create symlink for gzip
+  file:
+    dest: /usr/bin/gzip
+    src: /bin/gzip
+    state: link
+  when: ansible_os_family == "Debian"
