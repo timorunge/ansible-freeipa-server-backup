@@ -3,14 +3,20 @@
 - name: Create required backup directory
   file:
     mode: 0755
-    path: /var/lib/ipa/backup
+    path: "{{ freeipa_server_backup_path }}"
     state: directory
 
 - name: Copy FreeIPA backup delete script
   template:
     dest: /usr/local/bin/ipa-backup-delete
     mode: 0755
-    src: ipa-backup-delete.sh.j2
+    src: "{{ freeipa_server_backup_delete_template }}"
+
+- name: Copy FreeIPA backup rsync script
+  template:
+    dest: /usr/local/bin/ipa-backup-rsync
+    mode: 0755
+    src: "{{ freeipa_server_backup_rsync_template }}"
 
 - name: Create symlink for gzip
   file:

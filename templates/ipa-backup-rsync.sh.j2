@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+
+rsync {{ freeipa_server_backup_rsync_opts | join(' ') }} {{ freeipa_server_backup_path }}/* {{ freeipa_server_backup_rsync_dest }}

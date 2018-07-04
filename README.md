@@ -105,6 +105,21 @@ Examples
     - timorunge.freeipa_server_backup
 ```
 
+## 3) Install the FreeIPA server backup and move the data to another location (via rsync)
+
+```yaml
+- hosts: freeipa-server-backup
+  vars:
+    freeipa_server_backup_mv_location: rsync
+    freeipa_server_backup_rsync_opts:
+      - '-avq'
+      - '--ignore-existing'
+      - '-e "ssh -i /home/ipa-backups/.ssh/id_rsa"'
+    freeipa_server_backup_rsync_dest: ipa-backups@172.20.1.20:/var/backups/ipa-backup
+  roles:
+    - timorunge.freeipa_server_backup
+```
+
 Testing
 -------
 
@@ -148,7 +163,7 @@ Todo
 ----
 
 * Add possibility to encrypt backups (`--gpg` and `--gpg-keyring=GPG_KEYRING`)
-* Moving the files to an off-site location (s3, rsync & ssh)
+* Moving the files to an off-site location (s3, ~~rsync & ssh~~)
 
 License
 -------

@@ -6,6 +6,7 @@
 
   vars:
     freeipa_server_backup_max_age: 7
+    freeipa_server_backup_mv_location: off
     freeipa_server_backup_cron_full:
       day: "*"
       hour: 3

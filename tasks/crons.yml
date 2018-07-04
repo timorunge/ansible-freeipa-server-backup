@@ -32,3 +32,14 @@
     name: FreeIPA remove old backups
     state: "{{ freeipa_server_backup_cron_delete.state | default(present) }}"
     weekday: "{{ freeipa_server_backup_cron_delete.weekday | default('*') }}"
+
+- name: Create cronjob for moving backups to another location (via rsync)
+  cron:
+    day: "{{ freeipa_server_backup_cron_mv_location.day | default('*') }}"
+    hour: "{{ freeipa_server_backup_cron_mv_location.hour | default(6) }}"
+    job: /usr/local/bin/ipa-backup-rsync > /dev/null 2>&1
+    minute: "{{ freeipa_server_backup_cron_mv_location.minute | default(59 | random(seed=inventory_hostname)) }}"
+    month: "{{ freeipa_server_backup_cron_mv_location.month | default('*') }}"
+    name: FreeIPA move backups to another location (via rsync)
+    state: "{{ freeipa_server_backup_cron_mv_location_state | default('absent') }}"
+    weekday: "{{ freeipa_server_backup_cron_mv_location.weekday | default('*') }}"

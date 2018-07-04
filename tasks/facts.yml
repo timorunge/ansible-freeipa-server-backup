@@ -1,0 +1,8 @@
+---
+
+- name: Set cron move location state
+  set_fact:
+    freeipa_server_backup_cron_mv_location_state: present
+  when: >
+        (freeipa_server_backup_mv_location == "rsync") and
+        (freeipa_server_backup_cron_mv_location.state == "present")

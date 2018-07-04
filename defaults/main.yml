@@ -3,6 +3,45 @@
 # Defines the maximum age of backups (in days)
 freeipa_server_backup_max_age: 14
 
+# Defines the backup path
+# It should not be changed since the FreeIPA backup process has this hardcoded.
+freeipa_server_backup_path: /var/lib/ipa/backup
+
+# Defines the template for the ipa-backup-delete script
+freeipa_server_backup_delete_template: ipa-backup-delete.sh.j2
+
+# Defines the mode for moving the data to another location
+# Valid options are:
+# * off
+# * rsync
+freeipa_server_backup_mv_location: off
+
+# Defines the template for the ipa-backup-rsync script
+freeipa_server_backup_rsync_template: ipa-backup-rsync.sh.j2
+
+# Define options for the rsync command
+freeipa_server_backup_rsync_opts:
+  - '-avq'
+  - '--ignore-existing'
+
+# Defines the destnation for the rsync backup
+# Some examples:
+# Local path: /mnt/ipa-backups/
+# Remote server: ipa-backups@172.20.1.20:/var/backups/ipa-backup
+# For remote server you can define in the freeipa_server_backup_rsync_opts
+# something like:
+# - '-e "ssh -i /home/ipa-backups/.ssh/id_rsa"'
+freeipa_server_backup_rsync_dest: /var/backups/ipa
+
+# Define the time when old backups should be deleted
+freeipa_server_backup_cron_delete:
+  day: "*"
+  hour: 5
+  minute: "{{ 59 | random(seed=inventory_hostname) }}"
+  month: "*"
+  state: present
+  weekday: "*"
+
 # Define the time when a full backup should run
 # (this will stop and start the ipa services!)
 freeipa_server_backup_cron_full:
@@ -22,10 +61,10 @@ freeipa_server_backup_cron_online:
   state: present
   weekday: "*"
 
-# Define the time when old backups should be deleted
-freeipa_server_backup_cron_delete:
+# Define the time when the backups should move to another location
+freeipa_server_backup_cron_mv_location:
   day: "*"
-  hour: 5
+  hour: 6
   minute: "{{ 59 | random(seed=inventory_hostname) }}"
   month: "*"
   state: present

@@ -1,3 +1,4 @@
 #!/bin/sh
+set -e
 
-find /var/lib/ipa/backup/ipa* -maxdepth 1 -type d -mtime +{{ freeipa_server_backup_max_age | default(14) }} -exec rm -rf {} \;
+find {{ freeipa_server_backup_path }}/ipa* -maxdepth 1 -type d -mtime +{{ freeipa_server_backup_max_age | default(14) }} -exec rm -rf {} \;
