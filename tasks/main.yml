@@ -10,6 +10,7 @@
 - include_tasks: facts.yml
 
 - include_tasks: install-pkgs.yml
+  when: freeipa_server_backup_install_pkgs
 
 - include_tasks: dependencies.yml
 

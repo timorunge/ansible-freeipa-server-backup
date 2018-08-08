@@ -1,5 +1,8 @@
 ---
 
+# Install FreeIPA packages (set to false if you're using timorunge.freeipa)
+freeipa_server_backup_install_pkgs: true
+
 # Defines the maximum age of backups (in days)
 freeipa_server_backup_max_age: 14
 

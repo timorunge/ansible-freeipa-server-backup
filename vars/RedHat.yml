@@ -3,4 +3,5 @@
 freeipa_server_backup_pkgs:
   - cronie
   - crontabs
+  - ipa-server
   - rsync
