@@ -1,2 +1,4 @@
-.vagrant
 *.log
+.vagrant
+docker_test_runner.py
+tests/*.retry

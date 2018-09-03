@@ -6,13 +6,14 @@ This role is taking care of the backups for your FreeIPA servers.
 Requirements
 ------------
 
-This role requires Ansible 2.4.0 or higher. It's fully tested with the latest
-stable release (2.6.0).
+This role requires
+[Ansible 2.6.0](https://docs.ansible.com/ansible/devel/roadmap/ROADMAP_2_6.html)
+or higher.
 
-You can simply use pip to install (and define) the latest stable version:
+You can simply use pip to install (and define) a stable version:
 
 ```sh
-pip install ansible==2.6.0
+pip install ansible==2.6.3
 ```
 
 All platform requirements are listed in the metadata file.
@@ -125,31 +126,27 @@ Testing
 
 [![Build Status](https://travis-ci.org/timorunge/ansible-freeipa-server-backup.svg?branch=master)](https://travis-ci.org/timorunge/ansible-freeipa-server-backup)
 
-Testing is done with [Docker Compose](https://docs.docker.com/compose/) which is
-bringing up the following containers:
+Tests are done with [Docker](https://www.docker.com) and
+[docker_test_runner](https://github.com/timorunge/docker-test-runner) which
+brings up the following containers:
 
 * CentOS 7
-* Debian 8.10
-* Debian 9.4
-* Ubuntu 16.04
-* Ubuntu 17.10
-* Ubuntu 18.04
-* Ubuntu 18.10
+* Ubuntu 16.04 (Xenial Xerus)
+* Ubuntu 17.10 (Artful Aardvark)
+* Ubuntu 18.04 (Bionic Beaver)
+* Ubuntu 18.10 (Cosmic Cuttlefish)
 
-Ansible 2.6.0 is installed on all containers and is applying a
+Ansible 2.6.3 is installed on all containers and is applying a
 [test playbook](tests/test.yml) locally.
 
 For further details and additional checks take a look at the
-[Docker entrypoint](docker/docker-entrypoint.sh).
+[docker_test_runner configuration](tests/docker_test_runner.yml) and the
+[Docker entrypoint](tests/docker/docker-entrypoint.sh).
 
 ```sh
-# Testing locally with docker-compose:
-docker-compose config
-docker-compose pull
-docker-compose build
-docker-compose up --no-start
-docker-compose up
-docker-compose down
+# Testing locally:
+curl https://raw.githubusercontent.com/timorunge/docker-test-runner/master/install.sh | sh
+./docker_test_runner.py -f tests/docker_test_runner.yml
 ```
 
 Dependencies
@@ -158,6 +155,12 @@ Dependencies
 This role requires an up and running
 [FreeIPA Server](https://galaxy.ansible.com/timorunge/freeipa_server/)
 ([Github Repo](https://github.com/timorunge/ansible-freeipa-server)).
+
+If you're using an operating system which is not providing FreeIPA packages
+directly out of repositories you can use the Ansible role mentioned above.
+
+In this case ensure that you have `freeipa_server_backup_install_pkgs` set
+to `false` (which will disable the complete package installation of this role).
 
 Todo
 ----
