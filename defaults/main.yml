@@ -1,42 +1,55 @@
 ---
 
-# Install FreeIPA packages (set to false if you're using timorunge.freeipa)
-freeipa_server_backup_install_pkgs: true
+# Install FreeIPA packages (set to False if you're using `timorunge.freeipa`)
+# Type: Bool
+freeipa_server_backup_install_pkgs: True
 
 # Defines the maximum age of backups (in days)
+# Type: Int
 freeipa_server_backup_max_age: 14
 
 # Defines the backup path
 # It should not be changed since the FreeIPA backup process has this hardcoded.
+# Type: Str
 freeipa_server_backup_path: /var/lib/ipa/backup
 
 # Defines the template for the ipa-backup-delete script
+# Type: Str
 freeipa_server_backup_delete_template: ipa-backup-delete.sh.j2
 
 # Defines the mode for moving the data to another location
+# Type: Str
 # Valid options are:
 # * off
 # * rsync
 freeipa_server_backup_mv_location: off
 
 # Defines the template for the ipa-backup-rsync script
+# Type: Str
 freeipa_server_backup_rsync_template: ipa-backup-rsync.sh.j2
 
 # Define options for the rsync command
+# Type: List
 freeipa_server_backup_rsync_opts:
-  - '-avq'
-  - '--ignore-existing'
+  - "-avq"
+  - "--ignore-existing"
 
 # Defines the destnation for the rsync backup
-# Some examples:
-# Local path: /mnt/ipa-backups/
-# Remote server: ipa-backups@172.20.1.20:/var/backups/ipa-backup
-# For remote server you can define in the freeipa_server_backup_rsync_opts
-# something like:
-# - '-e "ssh -i /home/ipa-backups/.ssh/id_rsa"'
+# Type: Str
+# Examples:
+# Using local path:
+# freeipa_server_backup_rsync_dest: /mnt/ipa-backups/
+# Using remote server:
+# freeipa_server_backup_rsync_dest: ipa-backups@172.20.1.20:/var/backups/ipa-backup
+# For a remote server you can define in the `freeipa_server_backup_rsync_opts`
+# # something like:
+# freeipa_server_backup_rsync_dest: ipa-backups@172.20.1.20:/var/backups/ipa-backup
+# freeipa_server_backup_rsync_opts:
+#   - '-e "ssh -i /home/ipa-backups/.ssh/id_rsa"'
 freeipa_server_backup_rsync_dest: /var/backups/ipa
 
 # Define the time when old backups should be deleted
+# Type: Dict
 freeipa_server_backup_cron_delete:
   day: "*"
   hour: 5
@@ -47,6 +60,7 @@ freeipa_server_backup_cron_delete:
 
 # Define the time when a full backup should run
 # (this will stop and start the ipa services!)
+# Type: Dict
 freeipa_server_backup_cron_full:
   day: "*"
   hour: 4
@@ -56,6 +70,7 @@ freeipa_server_backup_cron_full:
   weekday: "*"
 
 # Define the time when a online backup should run
+# Type: Dict
 freeipa_server_backup_cron_online:
   day: "*"
   hour: "*"
@@ -65,6 +80,7 @@ freeipa_server_backup_cron_online:
   weekday: "*"
 
 # Define the time when the backups should move to another location
+# Type: Dict
 freeipa_server_backup_cron_mv_location:
   day: "*"
   hour: 6

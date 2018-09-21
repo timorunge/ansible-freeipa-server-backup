@@ -17,17 +17,17 @@ ansible-lint -c /etc/ansible/roles/${ansible_role}/.ansible-lint -r \
   /ansible/test.yml
 
 ansible-playbook /ansible/test.yml \
-  -i inventory \
+  -i /ansible/inventory \
   --syntax-check
 
 ansible-playbook /ansible/test.yml \
-  -i inventory \
+  -i /ansible/inventory \
   --connection=local \
   --become \
   $(test -z ${travis} && echo "-vvvv")
 
 ansible-playbook /ansible/test.yml \
-  -i inventory \
+  -i /ansible/inventory \
   --connection=local \
   --become | \
   grep -q "changed=0.*failed=0" && \

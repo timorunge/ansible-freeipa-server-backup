@@ -42,25 +42,28 @@ default location is `/var/lib/ipa/backup`).
 
 ```yaml
 # Defines the maximum age of backups (in days)
+# Type: Int
 freeipa_server_backup_max_age: 14
 
 # Define the time when a full backup should run
 # (this will stop and start the ipa services!)
+# Type: Dict
 freeipa_server_backup_cron_full:
   minute: "{{ 59 | random(seed=inventory_hostname) }}"
-  month: *
-  weekday: *
+  month: "*"
+  weekday: "*"
   hour: 4
-  day: *
+  day: "*"
   state: present
 
 # Define the time when a online backup should run
+# Type: Dict
 freeipa_server_backup_cron_online:
   minute: "{{ 59 | random(seed=inventory_hostname) }}"
-  month: *
-  weekday: *
-  hour: *
-  day: *
+  month: "*"
+  weekday: "*"
+  hour: "*"
+  day: "*"
   state: present
 ```
 
@@ -113,8 +116,8 @@ Examples
   vars:
     freeipa_server_backup_mv_location: rsync
     freeipa_server_backup_rsync_opts:
-      - '-avq'
-      - '--ignore-existing'
+      - "-avq"
+      - "--ignore-existing"
       - '-e "ssh -i /home/ipa-backups/.ssh/id_rsa"'
     freeipa_server_backup_rsync_dest: ipa-backups@172.20.1.20:/var/backups/ipa-backup
   roles:
@@ -160,7 +163,7 @@ If you're using an operating system which is not providing FreeIPA packages
 directly out of repositories you can use the Ansible role mentioned above.
 
 In this case ensure that you have `freeipa_server_backup_install_pkgs` set
-to `false` (which will disable the complete package installation of this role).
+to `False` (which will disable the complete package installation of this role).
 
 Todo
 ----
