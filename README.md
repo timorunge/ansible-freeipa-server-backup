@@ -156,7 +156,7 @@ Dependencies
 ------------
 
 This role requires an up and running
-[FreeIPA Server](https://galaxy.ansible.com/timorunge/freeipa_server/)
+[FreeIPA Server](https://galaxy.ansible.com/timorunge/freeipa_server)
 ([Github Repo](https://github.com/timorunge/ansible-freeipa-server)).
 
 If you're using an operating system which is not providing FreeIPA packages
