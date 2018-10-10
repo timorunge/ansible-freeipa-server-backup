@@ -1,10 +1,8 @@
-freeipa_server_backup
-=====================
+# freeipa_server_backup
 
 This role is taking care of the backups for your FreeIPA servers.
 
-Requirements
-------------
+## Requirements
 
 This role requires
 [Ansible 2.6.0](https://docs.ansible.com/ansible/devel/roadmap/ROADMAP_2_6.html)
@@ -23,15 +21,13 @@ In order to use this role take a look at the [dependencies](#dependencies).
 Also take a look at the
 [official documentation](https://www.freeipa.org/page/Backup_and_Restore).
 
-Install
--------
+## Install
 
 ```sh
 ansible-galaxy install timorunge.freeipa_server_backup
 ```
 
-Role Variables
---------------
+## Role Variables
 
 The variables that can be passed to this role and a brief description about
 them are as follows. (For all variables, take a look at [defaults/main.yml](defaults/main.yml))
@@ -67,10 +63,9 @@ freeipa_server_backup_cron_online:
   state: present
 ```
 
-Examples
---------
+## Examples
 
-## 1) Install the FreeIPA server backup with default settings
+### 1) Install the FreeIPA server backup with default settings
 
 ```yaml
 - hosts: freeipa-server-backup
@@ -78,7 +73,7 @@ Examples
     - timorunge.freeipa_server_backup
 ```
 
-## 2) Install the FreeIPA server backup with some custom settings:
+### 2) Install the FreeIPA server backup with some custom settings
 
 ```yaml
 - hosts: freeipa-server-backup
@@ -109,7 +104,7 @@ Examples
     - timorunge.freeipa_server_backup
 ```
 
-## 3) Install the FreeIPA server backup and move the data to another location (via rsync)
+### 3) Install the FreeIPA server backup and move the data to another location (via rsync)
 
 ```yaml
 - hosts: freeipa-server-backup
@@ -124,8 +119,7 @@ Examples
     - timorunge.freeipa_server_backup
 ```
 
-Testing
--------
+## Testing
 
 [![Build Status](https://travis-ci.org/timorunge/ansible-freeipa-server-backup.svg?branch=master)](https://travis-ci.org/timorunge/ansible-freeipa-server-backup)
 
@@ -133,11 +127,11 @@ Tests are done with [Docker](https://www.docker.com) and
 [docker_test_runner](https://github.com/timorunge/docker-test-runner) which
 brings up the following containers:
 
-* CentOS 7
-* Ubuntu 16.04 (Xenial Xerus)
-* Ubuntu 17.10 (Artful Aardvark)
-* Ubuntu 18.04 (Bionic Beaver)
-* Ubuntu 18.10 (Cosmic Cuttlefish)
+- CentOS 7
+- Ubuntu 16.04 (Xenial Xerus)
+- Ubuntu 17.10 (Artful Aardvark)
+- Ubuntu 18.04 (Bionic Beaver)
+- Ubuntu 18.10 (Cosmic Cuttlefish)
 
 Ansible 2.7.0 is installed on all containers and is applying a
 [test playbook](tests/test.yml) locally.
@@ -152,8 +146,7 @@ curl https://raw.githubusercontent.com/timorunge/docker-test-runner/master/insta
 ./docker_test_runner.py -f tests/docker_test_runner.yml
 ```
 
-Dependencies
-------------
+## Dependencies
 
 This role requires an up and running
 [FreeIPA Server](https://galaxy.ansible.com/timorunge/freeipa_server)
@@ -165,17 +158,15 @@ directly out of repositories you can use the Ansible role mentioned above.
 In this case ensure that you have `freeipa_server_backup_install_pkgs` set
 to `False` (which will disable the complete package installation of this role).
 
-Todo
-----
+## Todo
 
-* Add possibility to encrypt backups (`--gpg` and `--gpg-keyring=GPG_KEYRING`)
-* Moving the files to an off-site location (s3, ~~rsync & ssh~~)
+- Add possibility to encrypt backups (`--gpg` and `--gpg-keyring=GPG_KEYRING`)
+- Moving the files to an off-site location (s3, ~~rsync & ssh~~)
 
-License
--------
+## License
+
 BSD
 
-Author Information
-------------------
+## Author Information
 
 - Timo Runge
