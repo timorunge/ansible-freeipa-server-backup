@@ -2,9 +2,10 @@
 
 galaxy_info:
   author: Timo Runge
+  company: N/A
   description: FreeIPA Identity Management server backup.
   role_name: freeipa_server_backup
-  license: BSD
+  license: BSD-3-Clause
   min_ansible_version: 2.5.0
   platforms:
   - name: Debian
