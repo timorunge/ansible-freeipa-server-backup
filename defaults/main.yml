@@ -1,8 +1,8 @@
 ---
 
-# Install FreeIPA packages (set to False if you're using `timorunge.freeipa`)
+# Install FreeIPA packages (set to false if you're using `timorunge.freeipa`)
 # Type: Bool
-freeipa_server_backup_install_pkgs: True
+freeipa_server_backup_install_pkgs: true
 
 # Defines the maximum age of backups (in days)
 # Type: Int
